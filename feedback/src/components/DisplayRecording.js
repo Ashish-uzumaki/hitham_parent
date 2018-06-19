@@ -3,13 +3,13 @@ import { Text, View, Dimensions } from 'react-native';
 
 
 const textWidth = Dimensions.get('window').width;
-const RecordingText = () => {
+const RecordingText = (props) => {
     const { textStyle, viewStyle, container } = styles;
     return (
     <View style={container}>
     <View style={viewStyle} >
-    <Text style={textStyle}>Current Song:'dilvale'</Text>
-    <Text style={textStyle}>Album:'shreya goyal' </Text>
+    <Text style={textStyle}>Current Song:{props.recording}</Text>
+    <Text style={textStyle}>Album:{props.artist}</Text>
     </View>
     </View>
     );

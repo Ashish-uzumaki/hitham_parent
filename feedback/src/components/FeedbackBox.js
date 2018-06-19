@@ -12,11 +12,11 @@ class FeedbackBox extends React.Component {
       text: '',
       height: 60,
     };
-    // this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
-  // handleLogin() {
-  //   //this.props.sumbit(this.state.feedback_text);
-  // }
+  handleLogin() {
+    this.props.sumbit(this.state.text);
+  }
   updateSize = (height) => {
     this.setState({
       height
@@ -25,7 +25,7 @@ class FeedbackBox extends React.Component {
   
    render() {
       return ( 
-          // <View>
+          <View>
           <View style={styles.container}>
           <TextInput 
             {...this.props}
@@ -48,8 +48,8 @@ class FeedbackBox extends React.Component {
               onContentSizeChange={(e) => this.updateSize(e.nativeEvent.contentSize.height)}  
           />
           </View>
-          // <Button />
-          // </View>
+          <Button onpress={this.handleLogin} />
+          </View>
     );
     }
   }

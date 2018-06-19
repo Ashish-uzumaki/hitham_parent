@@ -8,6 +8,7 @@ export default class Button extends React.Component {
       }
       onPress = () => {
             this.setState({ pressStatus: true });
+            this.props.onpress();
       }
       _onHideUnderlay() {
         setTimeout(() => {
