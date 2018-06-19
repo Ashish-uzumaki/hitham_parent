@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import Header from './components/Header';
 import RecordingText from './components/DisplayRecording';
@@ -40,15 +40,18 @@ export default class FeedbackScreen extends React.Component {
   render() {
     const { state } = this.props.navigation;
       return (
-        <View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+          <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset} >
           <Header />  
          <RecordingText recording={state.params.recording} artist={state.params.artist} />
-        <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={keyboardVerticalOffset} >
+      
         <Emoji />
         <Locations />
         <FeedbackBox submitted={this.submit} />
         </KeyboardAvoidingView>
         </View>
+        </TouchableWithoutFeedback>    
       ); 
     }
 }
