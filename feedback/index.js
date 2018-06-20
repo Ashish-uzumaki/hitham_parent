@@ -1,7 +1,3 @@
-// import { AppRegistry } from 'react-native';
-// import App from './App';
-
-// AppRegistry.registerComponent('feedback', () => App);
 import React from 'react';
 import { AppRegistry } from 'react-native';
 import {
@@ -29,14 +25,5 @@ const Appl = StackNavigator({
     Feedback: { screen: FeedbackScreen },
 },
 { headerMode: 'none' });
-
-    
-//     return (
-//         <View style={{ flex: 1, backgroundColor: '#ffffff' }} >    
-//            <FeeedbackScreen />
-
-//         </View>
-//     );
-// };
 
 AppRegistry.registerComponent('feedback', () => Appl);

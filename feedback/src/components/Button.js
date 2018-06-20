@@ -13,7 +13,7 @@ export default class Button extends React.Component {
       _onHideUnderlay() {
         setTimeout(() => {
             this.setState({ pressStatus: false });
-          }, 150);   
+          }, 140);   
       }
       
     render() {
@@ -46,25 +46,22 @@ const styles = {
         textAlign: 'center',
         fontSize: 23,
         fontWeight: '700',
-        lineSpacing: 10,
     },
     textstyle1: {
-        
          color: '#00A6FF',
        textAlign: 'center',
         fontSize: 23,
         fontWeight: '700',
-        lineSpacing: 10,
     },
     buttonStyle: {
         height: 42,
         width: 160,
-        marginTop: 3,
+        marginTop: 4,
         backgroundColor: '#00A6FF',
         borderColor: '#00A6FF',
         borderRadius: 10,
         borderWidth: 1,
-        elevation: 2,
+        elevation: 4,
         
     },
     buttonStyle1: {

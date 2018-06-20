@@ -5,27 +5,32 @@ Animated, PanResponder, Dimensions } from 'react-native';
 
 
 const reactions = [
-    { label: 'Worried',
-     src: require('./assets/worried.png'),
-     bigSrc: require('./assets/worried_big.png')
-     },
-     { label: 'Sad',
-     src: require('./assets/sad.png'),
-      bigSrc: require('./assets/sad_big.png')
-     },
-  { label: 'Strong',
-   src: require('./assets/ambitious.png'),
-    bigSrc: require('./assets/ambitious_big.png')
+  { label: 'Worried',
+   src: require('./assets/worried.png'),
+   bigSrc: require('./assets/worried_big.png'),
+   url: './assets/worried_big.png'
    },
-  { label: 'Happy', 
-  src: require('./assets/smile.png'),
-   bigSrc: require('./assets/smile_big.png')
+   { label: 'Sad',
+   src: require('./assets/sad.png'),
+    bigSrc: require('./assets/sad_big.png'),
+    url: './assets/sad_big.png'
    },
-  { label: 'Surprised',
-   src: require('./assets/surprised.png'),
-    bigSrc: require('./assets/surprised_big.png')
-   },
-  ];
+    { label: 'Strong',
+    src: require('./assets/ambitious.png'),
+      bigSrc: require('./assets/ambitious_big.png'),
+      url: './assets/ambitious_big.png'
+    },
+    { label: 'Happy', 
+    src: require('./assets/smile.png'),
+    bigSrc: require('./assets/smile_big.png'),
+    url: './assets/smile_big.png'
+    },
+    { label: 'Surprised',
+    src: require('./assets/surprised.png'),
+      bigSrc: require('./assets/surprised_big.png'),
+      url: './assets/surprised_big.png'
+    },
+    ];
 
 const WIDTH = 320;
 const DISTANCE = WIDTH / reactions.length;
@@ -70,12 +75,13 @@ export default class Emoji extends React.Component {
         const modulo = offset % DISTANCE;
         offset = (modulo >= DISTANCE / 2) ? (offset + (DISTANCE - modulo)) : (offset - modulo);
 
-        this.updatePan(offset);  
+        this.updatePan(offset, '2a');  
       }
     });
   }
   updatePan(toValue, image) {
     Animated.spring(this.state.pan, { toValue, friction: 7 }).start();
+    this.props.updateEmoji(image);
   }
 
   
@@ -104,7 +110,7 @@ export default class Emoji extends React.Component {
         return (
             
               <TouchableOpacity 
-              onPress={() => this.updatePan(u, data.bigSrc)}
+              onPress={() => this.updatePan(u, data.url)}
                activeOpacity={0.7} key={idx}
               >
               <View style={styles.smileyWrap}>
@@ -116,9 +122,6 @@ export default class Emoji extends React.Component {
                     inputRange,
                     outputRange: scaleOutputRange,
                     extrapolate: 'clamp',
-                    extrapolateLeft: 'clamp',
-                    extrapolateRight: 'clamp',
-
                   })
                 }]
               }]}
@@ -206,7 +209,7 @@ export default class Emoji extends React.Component {
 const styles = {
     container: {
         position: 'relative',
-        marginTop: 3,
+        marginTop: 2,
         height: 195,
         width: TEXTWIDTH - 5,
         justifyContent: 'center',
@@ -219,73 +222,72 @@ const styles = {
         justifyContent: 'center',
         alignSelf: 'center',
       },
-  welcome: {
-    fontSize: 23,
-    textAlign: 'left',
-    color: '#00A6FF',
-    fontWeight: '700',
-    fontFamily: 'Avenir',
-    marginBottom: 20,
-    lineSpacing: 20,
-    paddingTop: 15
-  },
-  smileyWrap: {
-    width: DISTANCE,
-    height: DISTANCE + 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 20
-  },
-  smileyButton: {
-      height: 60,
-      width: 60,
-      borderRadius: 30,
-      backgroundColor: '#ecf0f1',
+    welcome: {
+      fontSize: 23,
+      textAlign: 'left',
+      color: '#00A6FF',
+      fontWeight: '700',
+      fontFamily: 'Avenir',
+      marginBottom: 20,
+      paddingTop: 15
+    },
+    smileyWrap: {
+      width: DISTANCE,
+      height: DISTANCE + 20,
       justifyContent: 'center',
       alignItems: 'center',
-       elevation: 1,
+      paddingBottom: 20
+    },
+    smileyButton: {
+        height: 60,
+        width: 60,
+        borderRadius: 30,
+        backgroundColor: '#ecf0f1',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 1,
 
-  },
-  reactionText: {
-    fontSize: 17,
-    textAlign: 'center',
-    color: '#999',
-    fontWeight: '400',
-    fontFamily: 'Avenir',
-    marginTop: 3,
-  },
-   smiley: {
-    height: 45,
-     width: 45,
-   
-  },
-  bigSmiley: {
-    width: DISTANCE,
-    height: DISTANCE,
-    borderRadius: DISTANCE / 2,
-    backgroundColor: '#ffb18d',
-    position: 'absolute',
-    elevation: 2,
-    top: 0,
-    left: 0,
-  },
-  bigSmileyImage: {
-    width: DISTANCE,
-    height: DISTANCE,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-  reactions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'transparent',
-  },
-  line: {
-    height: 4 / PixelRatio.get(),
-    backgroundColor: '#ffff',
-    width: WIDTH - (DISTANCE - size),
-    left: (DISTANCE - size) / 2,
-    top: (DISTANCE / 2) + (2 / PixelRatio.get()),
-  }
+    },
+    reactionText: {
+      fontSize: 17,
+      textAlign: 'center',
+      color: '#999',
+      fontWeight: '400',
+      fontFamily: 'Avenir',
+      marginTop: 3,
+    },
+    smiley: {
+      height: 45,
+      width: 45,
+    
+    },
+    bigSmiley: {
+      width: DISTANCE,
+      height: DISTANCE,
+      borderRadius: DISTANCE / 2,
+      backgroundColor: '#ffb18d',
+      position: 'absolute',
+      elevation: 2,
+      top: 0,
+      left: 0,
+    },
+    bigSmileyImage: {
+      width: DISTANCE,
+      height: DISTANCE,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+    },
+    reactions: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: 'transparent',
+    },
+    line: {
+      height: 4 / PixelRatio.get(),
+      backgroundColor: '#ffff',
+      width: WIDTH - (DISTANCE - size),
+      left: (DISTANCE - size) / 2,
+      top: (DISTANCE / 2) + (2 / PixelRatio.get()),
+    }
 };

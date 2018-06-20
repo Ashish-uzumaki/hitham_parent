@@ -6,12 +6,12 @@ const textWidth = Dimensions.get('window').width;
 const RecordingText = (props) => {
     const { textStyle, viewStyle, container } = styles;
     return (
-    <View style={container}>
-    <View style={viewStyle} >
-    <Text style={textStyle}>Current Song:{props.recording}</Text>
-    <Text style={textStyle}>Album:{props.artist}</Text>
-    </View>
-    </View>
+        <View style={container}>
+        <View style={viewStyle} >
+        <Text style={textStyle}>Current Recording:{props.recording}</Text>
+        <Text style={textStyle}>Artist:{props.artist}</Text>
+        </View>
+        </View>
     );
 };
 const styles = {
@@ -27,8 +27,8 @@ const styles = {
     viewStyle: {
         position: 'relative',
         marginTop: 15,
-        height: 120,
-        width: textWidth - 5,
+        height: 130,
+        width: textWidth - 8,
         backgroundColor: '#DFE6E3',
     },
     container: {
